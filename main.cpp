@@ -21,6 +21,11 @@ void copy(double* src, double* target)
 void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 {
     unsigned seed ;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(0, 1);//uniform distribution between 0 and 1
+
      /*initialization alpha, beta, and delta */
      double alpha_pos[dim + 1];
      alpha_pos[dim] = '\0';
@@ -52,7 +57,7 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
         for(int j = 0; j < dim; j++){
             seed = time(0);
             srand(seed);
-            positions[i][j] = (double)(rand()/ RAND_MAX) * (ub[j] - lb[j]) + lb[j];
+            positions[i][j] = (double)(dis(gen)) * (ub[j] - lb[j]) + lb[j];
             cout << "positions[" << i <<"][" << j << "] = " << positions[i][j]<<"\n";
         }
      }
@@ -61,20 +66,21 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
      double convergence_courbe[max_iter];
      //initialisation du fitness
      double fitness, a, r1, r2, A1, A2, A3, C1, C2, C3, X1, X2, X3, D_alpha, D_beta, D_delta;
-
+     //adaptation des position hores limites
+    for(int i = 0; i < searchAgents; i++){
+       for(int j = 0; j < dim; j++){
+                if(positions[i][j] < lb[j]){
+                    positions[i][j] = lb[j];
+                } else if(positions[i][j] > ub[j]){
+                    positions[i][j] = ub[j];
+                }
+                cout << "nvs: positions[" << i <<"][" << j << "] = " << positions[i][j] <<"\n";
+            }
+    }
     for(int l = 0; l < max_iter; l++){
 
         for(int i = 0; i < searchAgents; i++){
-                //adaptation des position hores limites
-                for(int j = 0; j < dim; j++){
-                    if(positions[i][j] < lb[j]){
-                        positions[i][j] = lb[j];
-                    } else if(positions[i][j] > ub[j]){
-                        positions[i][j] = ub[j];
-                    }
 
-            cout << "nvs: positions[" << i <<"][" << j << "] = " << positions[i][j] <<"\n";
-                }
             // Calcule des fitness pour chaque agent (loup)
             fitness = F->objcF(&positions[i][0]);
             cout << "fitness = " << fitness << endl;
@@ -152,13 +158,12 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
                 }
             }
         }
-        a = 2 - l * ((2) / max_iter);
+        a = 2 - l * (((double) 2) / max_iter);
+        cout << "---> a = " << a;
         for(int i = 0; i < searchAgents; i++){
             for(int j = 0; j < dim; j++){
-                srand(time(NULL));
-                r1 = (double)(rand()/ RAND_MAX);
-                srand(time(NULL));
-                r2 = (double)(rand()/ RAND_MAX);
+                r1 = (double)(dis(gen));
+                r2 = (double)(dis(gen));
                 cout << "iter: i = "<<i<<" j = "<<j<<" r1 = "<<r1<<" r2 = "<<r2<<"\n";
 
                 A1 = 2 * a * r1 - a;
@@ -168,10 +173,8 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 
                 X1 = alpha_pos[j] - A1 * D_alpha;
                 cout << "A1 = "<< A1<<" C1 = "<< C1 << " D_alpha = "<< D_alpha << " X1 = "<< X1  << "\n";
-                srand(time(NULL));
-                r1 = (double)(rand()/ RAND_MAX);
-                srand(time(NULL));
-                r2 = (double)(rand()/ RAND_MAX);
+                r1 = (double)(dis(gen));
+                r2 = (double)(dis(gen));
 
                 cout << "iter: i = "<<i<<" j = "<<j<<" r1 = "<<r1<<" r2 = "<<r2<<"\n";
                 A2 = 2 * a * r1 - a;
@@ -182,10 +185,8 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
                 X2 = beta_pos[j] - A2 * D_beta;
 
                 cout << "A2 = "<< A2<<" C2 = "<< C2 << " D_beta = "<< D_beta << " X2 = "<< X2 << "\n";
-                srand(time(NULL));
-                r1 = (double)(rand()/ RAND_MAX);
-                srand(time(NULL));
-                r2 = (double)(rand()/ RAND_MAX);
+                r1 = (double)(dis(gen));
+                r2 = (double)(dis(gen));
 
                 cout << "iter: i = "<<i<<" j = "<<j<<" r1 = "<<r1<<" r2 = "<<r2<<"\n";
                 A3 = 2 * a * r1 - a;
@@ -220,7 +221,6 @@ int main()
     double x = f->objcF(y);
     double z = f->objcF(a);
     cout << "x = " << x << " z = " << z;
-
 
     return 0;
 }
