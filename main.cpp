@@ -7,6 +7,8 @@
 #include <Fitness.h>
 #include <cstdlib>   // rand and srand
 #include <ctime>     // For the time function
+#include <fstream>
+
 using namespace std;
 
 //copy un les valeur d'un tableau dans un autre
@@ -21,7 +23,8 @@ void copy(double* src, double* target)
 void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 {
     unsigned seed ;
-
+    std::ofstream myfile;
+    myfile.open ("GWO.csv");
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis(0, 1);//uniform distribution between 0 and 1
@@ -201,9 +204,10 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
             }
         }
         convergence_courbe[l] = alpha_score;
+        myfile << l<<","<<convergence_courbe[l]<<"\n";
         cout << "l = "<< l<< " alpha_score = "<<alpha_score;
     }//iteration
-
+    myfile.close();
 
 }
 
@@ -214,13 +218,6 @@ int main()
     int ub[3] = {100, 100,'\0'};
     int lb[3] = {-100, -100,'\0'};
     GWO(f, ub, lb, 2, 6, 20);
-    double y[3] = {1.7, 2.8, '\0'};
-    double a[3] = {12,12,'\0'};
-
-    copy(y, a);
-    double x = f->objcF(y);
-    double z = f->objcF(a);
-    cout << "x = " << x << " z = " << z;
 
     return 0;
 }
