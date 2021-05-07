@@ -11,7 +11,7 @@
 
 using namespace std;
 
-//copy un les valeur d'un tableau dans un autre
+//copy un des valeurs d'un tableau dans un autre
 void copy(double* src, double* target)
 {
     double *k, *m;
@@ -41,16 +41,6 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
      double delta_pos[dim + 1];
      delta_pos[dim] = '\0';
      double delta_score = std::numeric_limits<double>::infinity();
-
-     if(alpha_score > 1000000){
-        cout << "alpha_score = +infini \n";
-     }
-      if(beta_score > 1000000){
-        cout << "beta_score = +infini \n";
-     }
-      if(delta_score > 1000000){
-        cout << "delta_score = +infini \n";
-     }
 
      /*inisialization des positions pour chaque loup*/
      double positions[searchAgents + 1][dim + 1];
@@ -86,126 +76,60 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 
             // Calcule des fitness pour chaque agent (loup)
             fitness = F->objcF(&positions[i][0]);
-            cout << "fitness = " << fitness << endl;
             // update Alpha, Beta, et Delta
 
             if(fitness < alpha_score){
                 delta_score = beta_score;
-                cout << "1- delta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< delta_pos[k];
-                }
-
                 copy(beta_pos, delta_pos);
 
-                cout << "\nnvs : delta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< delta_pos[k];
-                }
-
                 beta_score = alpha_score;
-                cout << "beta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< beta_pos[k];
-                }
                 copy(alpha_pos, beta_pos);
 
-                cout << "\nnvs : beta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< beta_pos[k];
-                }
-                cout << "alpha_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< alpha_pos[k];
-                }
                 alpha_score = fitness;
                 copy(&positions[i][0], alpha_pos);
-                cout << "\nnvs : alpha_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< alpha_pos[k];
-                }
             }
             if(fitness > alpha_score && fitness < beta_score){
-                cout << "2- delta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< delta_pos[k];
-                }
                 delta_score = beta_score;
                 copy(beta_pos, delta_pos);
 
-                cout << "\nnvs : delta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< delta_pos[k];
-                }
-                cout << "beta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< beta_pos[k];
-                }
                 beta_score = alpha_score;
                 copy(alpha_pos, beta_pos);
-                cout << "\nnvs : beta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< beta_pos[k];
-                }
             }
             if(fitness > alpha_score && fitness > beta_score && fitness < delta_score){
-                cout << "3- delta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< delta_pos[k];
-                }
                 delta_score = fitness;
                 copy(&positions[i][0], delta_pos);
-                cout << "\nnvs : delta_pos : ";
-                for(int k = 0; k < dim; k++){
-                    cout << " "<< delta_pos[k];
-                }
             }
         }
         a = 2 - l * (((double) 2) / max_iter);
-        cout << "---> a = " << a;
         for(int i = 0; i < searchAgents; i++){
             for(int j = 0; j < dim; j++){
                 r1 = (double)(dis(gen));
                 r2 = (double)(dis(gen));
-                cout << "iter: i = "<<i<<" j = "<<j<<" r1 = "<<r1<<" r2 = "<<r2<<"\n";
-
                 A1 = 2 * a * r1 - a;
                 C1 = 2 * r2;
-
                 D_alpha = abs(C1 * alpha_pos[j] - positions[i][j]);
-
                 X1 = alpha_pos[j] - A1 * D_alpha;
-                cout << "A1 = "<< A1<<" C1 = "<< C1 << " D_alpha = "<< D_alpha << " X1 = "<< X1  << "\n";
+
                 r1 = (double)(dis(gen));
                 r2 = (double)(dis(gen));
-
-                cout << "iter: i = "<<i<<" j = "<<j<<" r1 = "<<r1<<" r2 = "<<r2<<"\n";
                 A2 = 2 * a * r1 - a;
                 C2 = 2 * r2;
-
                 D_beta = abs(C2 * beta_pos[j] - positions[i][j]);
-
                 X2 = beta_pos[j] - A2 * D_beta;
 
-                cout << "A2 = "<< A2<<" C2 = "<< C2 << " D_beta = "<< D_beta << " X2 = "<< X2 << "\n";
                 r1 = (double)(dis(gen));
                 r2 = (double)(dis(gen));
-
-                cout << "iter: i = "<<i<<" j = "<<j<<" r1 = "<<r1<<" r2 = "<<r2<<"\n";
                 A3 = 2 * a * r1 - a;
                 C3 = 2 * r2;
-
                 D_delta = abs(C3 * delta_pos[j] - positions[i][j]);
-
                 X3 = delta_pos[j] - A3 * D_delta;
 
-                cout << "A3 = "<< A3<<" C3 = "<< C3 << " D_delta = "<< D_beta << " X3 = "<< X3 << "\n";
                 positions[i][j] = (X1 + X2 + X3)/3 ;
             }
         }
         convergence_courbe[l] = alpha_score;
         myfile << l<<","<<convergence_courbe[l]<<"\n";
-        cout << "l = "<< l<< " alpha_score = "<<alpha_score;
+        cout << "l = "<< l<< " alpha_score = "<<alpha_score << endl;
     }//iteration
     myfile.close();
 
@@ -213,7 +137,6 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 
 int main()
 {
-   // cout << "Hello world!" << endl;
     Fitness *f = new F6();
     int ub[3] = {100, 100,'\0'};
     int lb[3] = {-100, -100,'\0'};
