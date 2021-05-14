@@ -15,7 +15,7 @@
 1620222457 c:\m1\stage\gwo\gwalgo\gwalgo\include\f6.h
 	<Fitness.h>
 
-1620311153 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
+1620401540 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
 	<iostream>
 	<Fitness.h>
 	<F6.h>
@@ -24,6 +24,5 @@
 	<cstdlib>
 	<Fitness.h>
 	<cstdlib>
-	<ctime>
 	<fstream>
 

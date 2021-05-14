@@ -32,7 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/F6.h" />
+		<Unit filename="include/Fitness.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/F6.cpp" />
+		<Unit filename="src/Fitness.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

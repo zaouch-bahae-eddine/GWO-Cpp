@@ -6,7 +6,6 @@
 #include <cstdlib>
 #include <Fitness.h>
 #include <cstdlib>   // rand and srand
-#include <ctime>     // For the time function
 #include <fstream>
 
 using namespace std;
@@ -22,7 +21,6 @@ void copy(double* src, double* target)
 
 void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 {
-    unsigned seed ;
     std::ofstream myfile;
     myfile.open ("GWO.csv");
     std::random_device rd;
@@ -48,8 +46,6 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
         positions[i][dim] = '\0';
 
         for(int j = 0; j < dim; j++){
-            seed = time(0);
-            srand(seed);
             positions[i][j] = (double)(dis(gen)) * (ub[j] - lb[j]) + lb[j];
             cout << "positions[" << i <<"][" << j << "] = " << positions[i][j]<<"\n";
         }
@@ -67,17 +63,24 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
                 } else if(positions[i][j] > ub[j]){
                     positions[i][j] = ub[j];
                 }
-                cout << "nvs: positions[" << i <<"][" << j << "] = " << positions[i][j] <<"\n";
             }
     }
     for(int l = 0; l < max_iter; l++){
 
         for(int i = 0; i < searchAgents; i++){
 
-            // Calcule des fitness pour chaque agent (loup)
+            //Maintenir les positions dans les bonnes bornes
+           for(int j = 0; j < dim; j++){
+                    if(positions[i][j] < lb[j]){
+                        positions[i][j] = lb[j];
+                    } else if(positions[i][j] > ub[j]){
+                        positions[i][j] = ub[j];
+                    }
+            }
+            // Calcule des fitness pour chaque agent
             fitness = F->objcF(&positions[i][0]);
-            // update Alpha, Beta, et Delta
 
+            // update Alpha, Beta, et Delta
             if(fitness < alpha_score){
                 delta_score = beta_score;
                 copy(beta_pos, delta_pos);
@@ -137,10 +140,12 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 
 int main()
 {
-    Fitness *f = new F6();
+    double src[5] = {0.2, 0.5, 0.9, 0.6, '\0'};
+    double maxValue = maxArray(src);
+    cout << "MAX VALUE = " << maxValue;
+   Fitness *f = new F6();
     int ub[3] = {100, 100,'\0'};
     int lb[3] = {-100, -100,'\0'};
-    GWO(f, ub, lb, 2, 6, 20);
-
+    GWO(f, ub, lb, 2, 20, 20);
     return 0;
 }
