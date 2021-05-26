@@ -5,7 +5,7 @@
 
 1620222453 c:\m1\stage\gwo\gwalgo\gwalgo\include\fitness.h
 
-1620224397 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\f6.cpp
+1622016381 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\f6.cpp
 	"F6.h"
 	<iostream>
 	<cstdlib>
@@ -15,7 +15,7 @@
 1620222457 c:\m1\stage\gwo\gwalgo\gwalgo\include\f6.h
 	<Fitness.h>
 
-1620401540 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
+1622024939 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
 	<iostream>
 	<Fitness.h>
 	<F6.h>
@@ -25,4 +25,32 @@
 	<Fitness.h>
 	<cstdlib>
 	<fstream>
+	<ArrayTools.h>
+	<Dantzig.h>
+	<LireEcrire.h>
+	<stdio.h>
+
+1622018116 c:\m1\stage\gwo\gwalgo\gwalgo\include\arraytools.h
+
+1622024061 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\arraytools.cpp
+	<ArrayTools.h>
+	<iostream>
+	<cstdlib>
+	<random>
+	<limits>
+
+1622025243 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\dantzig.cpp
+	<iostream>
+	"Dantzig.h"
+	"ArrayTools.h"
+
+1622019749 c:\m1\stage\gwo\gwalgo\gwalgo\include\dantzig.h
+
+1622022878 c:\m1\stage\gwo\gwalgo\gwalgo\include\lireecrire.h
+
+1622024939 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\lireecrire.cpp
+	<LireEcrire.h>
+	<fstream>
+	<iostream>
+	<string>
 

@@ -7,17 +7,12 @@
 #include <Fitness.h>
 #include <cstdlib>   // rand and srand
 #include <fstream>
+#include <ArrayTools.h>
+#include <Dantzig.h>
+#include <LireEcrire.h>
+#include <stdio.h>
 
 using namespace std;
-
-//copy un des valeurs d'un tableau dans un autre
-void copy(double* src, double* target)
-{
-    double *k, *m;
-    for(k = src, m = target; *k != '\0', *m != '\0'; k++, m++){
-        *m = *k;
-    }
-}
 
 void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 {
@@ -83,24 +78,24 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
             // update Alpha, Beta, et Delta
             if(fitness < alpha_score){
                 delta_score = beta_score;
-                copy(beta_pos, delta_pos);
+                copyTab(beta_pos, delta_pos);
 
                 beta_score = alpha_score;
-                copy(alpha_pos, beta_pos);
+                copyTab(alpha_pos, beta_pos);
 
                 alpha_score = fitness;
-                copy(&positions[i][0], alpha_pos);
+                copyTab(&positions[i][0], alpha_pos);
             }
             if(fitness > alpha_score && fitness < beta_score){
                 delta_score = beta_score;
-                copy(beta_pos, delta_pos);
+                copyTab(beta_pos, delta_pos);
 
                 beta_score = alpha_score;
-                copy(alpha_pos, beta_pos);
+                copyTab(alpha_pos, beta_pos);
             }
             if(fitness > alpha_score && fitness > beta_score && fitness < delta_score){
                 delta_score = fitness;
-                copy(&positions[i][0], delta_pos);
+                copyTab(&positions[i][0], delta_pos);
             }
         }
         a = 2 - l * (((double) 2) / max_iter);
@@ -140,12 +135,31 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 
 int main()
 {
-    double src[5] = {0.2, 0.5, 0.9, 0.6, '\0'};
-    double maxValue = maxArray(src);
-    cout << "MAX VALUE = " << maxValue;
-   Fitness *f = new F6();
+    char* fileName = "data.txt";
+    int* nbObjet = (int*) malloc(sizeof(int));
+
+    std::ifstream infile(fileName);
+    infile >> *nbObjet;
+
+    double* src_p = (double*) malloc(*(nbObjet + 1)*sizeof(double));
+    double* src_w = (double*) malloc(*(nbObjet + 1)*sizeof(double));
+    double* capacitySack = (double*) malloc(sizeof(double));
+
+    Lire(fileName,nbObjet,capacitySack, src_p, src_w);
+    cout << "\ndantzig : \n" ;
+
+    int c;
+    c = getchar();
+    double* res= DantzigAlgo(src_p, src_w, *capacitySack);
+
+    for(double* m = res; *m != '\0'; m++){
+        cout << *m <<" ,";
+    }
+        cout << "\ndantzig ended : \n";
+
+    Fitness *f = new F6();
     int ub[3] = {100, 100,'\0'};
     int lb[3] = {-100, -100,'\0'};
-    GWO(f, ub, lb, 2, 20, 20);
+    //GWO(f, ub, lb, 2, 20, 20);
     return 0;
 }

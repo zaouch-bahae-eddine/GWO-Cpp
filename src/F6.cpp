@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <math.h>       /* pow */
 
-#include<include/Fitness.h>
+#include<Fitness.h>
 using namespace std;
 
 F6::F6()
