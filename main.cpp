@@ -11,7 +11,7 @@
 #include <Dantzig.h>
 #include <LireEcrire.h>
 #include <stdio.h>
-
+#include "GenerateurInstance.h"
 using namespace std;
 
 void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
@@ -135,6 +135,8 @@ void GWO(Fitness* F, int* ub, int* lb, int dim, int searchAgents, int max_iter)
 
 int main()
 {
+    GenerateurInstance *G = new GenerateurInstance();
+    G->generat_Inst_correlee();
     char* fileName = "data.txt";
     int* nbObjet = (int*) malloc(sizeof(int));
 

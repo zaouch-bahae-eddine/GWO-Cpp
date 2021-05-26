@@ -15,7 +15,7 @@
 1620222457 c:\m1\stage\gwo\gwalgo\gwalgo\include\f6.h
 	<Fitness.h>
 
-1622024939 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
+1622043155 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
 	<iostream>
 	<Fitness.h>
 	<F6.h>
@@ -29,17 +29,18 @@
 	<Dantzig.h>
 	<LireEcrire.h>
 	<stdio.h>
+	"GenerateurInstance.h"
 
 1622018116 c:\m1\stage\gwo\gwalgo\gwalgo\include\arraytools.h
 
-1622024061 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\arraytools.cpp
+1622025355 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\arraytools.cpp
 	<ArrayTools.h>
 	<iostream>
 	<cstdlib>
 	<random>
 	<limits>
 
-1622025243 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\dantzig.cpp
+1622025362 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\dantzig.cpp
 	<iostream>
 	"Dantzig.h"
 	"ArrayTools.h"
@@ -53,4 +54,14 @@
 	<fstream>
 	<iostream>
 	<string>
+
+1622043955 c:\m1\stage\gwo\gwalgo\gwalgo\include\generateurinstance.h
+
+1622050112 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\generateurinstance.cpp
+	"GenerateurInstance.h"
+	<cstdlib>
+	<fstream>
+	<random>
+	<cstdlib>
+	<iostream>
 

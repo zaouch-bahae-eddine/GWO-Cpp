@@ -9,6 +9,7 @@ class GenerateurInstance
         void generat_Inst_correlee();
         void generat_Inst_non_correlee();
         void generat_Inst_fortement_correlee();
+        bool assurWSuppC(char*);
 
     protected:
 
