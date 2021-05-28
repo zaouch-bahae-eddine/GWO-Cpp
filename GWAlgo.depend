@@ -15,7 +15,7 @@
 1620222457 c:\m1\stage\gwo\gwalgo\gwalgo\include\f6.h
 	<Fitness.h>
 
-1622194654 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
+1622195494 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
 	<iostream>
 	<Fitness.h>
 	<F6.h>
@@ -30,6 +30,7 @@
 	<LireEcrire.h>
 	<stdio.h>
 	"GenerateurInstance.h"
+	<GWOA.h>
 
 1622018116 c:\m1\stage\gwo\gwalgo\gwalgo\include\arraytools.h
 
@@ -49,7 +50,7 @@
 
 1622191767 c:\m1\stage\gwo\gwalgo\gwalgo\include\lireecrire.h
 
-1622194935 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\lireecrire.cpp
+1622195025 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\lireecrire.cpp
 	<LireEcrire.h>
 	<fstream>
 	<iostream>
@@ -66,4 +67,18 @@
 	<cstdlib>
 	<cstdio>
 	<iostream>
+
+1622195550 c:\m1\stage\gwo\gwalgo\gwalgo\include\gwoa.h
+
+1622195529 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\gwoa.cpp
+	<iostream>
+	<Fitness.h>
+	<F6.h>
+	<random>
+	<limits>
+	<cstdlib>
+	<Fitness.h>
+	<cstdlib>
+	<fstream>
+	<ArrayTools.h>
 
