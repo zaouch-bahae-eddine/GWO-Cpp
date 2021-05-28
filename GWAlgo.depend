@@ -15,7 +15,7 @@
 1620222457 c:\m1\stage\gwo\gwalgo\gwalgo\include\f6.h
 	<Fitness.h>
 
-1622043155 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
+1622194654 source:c:\m1\stage\gwo\gwalgo\gwalgo\main.cpp
 	<iostream>
 	<Fitness.h>
 	<F6.h>
@@ -33,35 +33,37 @@
 
 1622018116 c:\m1\stage\gwo\gwalgo\gwalgo\include\arraytools.h
 
-1622025355 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\arraytools.cpp
+1622106949 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\arraytools.cpp
 	<ArrayTools.h>
 	<iostream>
 	<cstdlib>
 	<random>
 	<limits>
 
-1622025362 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\dantzig.cpp
+1622190045 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\dantzig.cpp
 	<iostream>
 	"Dantzig.h"
 	"ArrayTools.h"
 
-1622019749 c:\m1\stage\gwo\gwalgo\gwalgo\include\dantzig.h
+1622190061 c:\m1\stage\gwo\gwalgo\gwalgo\include\dantzig.h
 
-1622022878 c:\m1\stage\gwo\gwalgo\gwalgo\include\lireecrire.h
+1622191767 c:\m1\stage\gwo\gwalgo\gwalgo\include\lireecrire.h
 
-1622024939 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\lireecrire.cpp
+1622194935 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\lireecrire.cpp
 	<LireEcrire.h>
 	<fstream>
 	<iostream>
 	<string>
+	<bits/stdc++.h>
 
-1622043955 c:\m1\stage\gwo\gwalgo\gwalgo\include\generateurinstance.h
+1622189169 c:\m1\stage\gwo\gwalgo\gwalgo\include\generateurinstance.h
 
-1622050112 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\generateurinstance.cpp
+1622189141 source:c:\m1\stage\gwo\gwalgo\gwalgo\src\generateurinstance.cpp
 	"GenerateurInstance.h"
 	<cstdlib>
 	<fstream>
 	<random>
 	<cstdlib>
+	<cstdio>
 	<iostream>
 

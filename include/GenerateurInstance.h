@@ -8,8 +8,9 @@ class GenerateurInstance
         GenerateurInstance();
         void generat_Inst_correlee();
         void generat_Inst_non_correlee();
-        void generat_Inst_fortement_correlee();
+        void generat_Inst_fortement_correlee(int);
         bool assurWSuppC(char*);
+        int verifyCandW(char*);
 
     protected:
 

@@ -74,6 +74,7 @@ int* normalisation(double* src)
 //ordonate object selon le raport (p/w); return the ordonated array with value (p/w)
 double* ordonerObjet(double* p, double* w)
 {
+    cout << "\n ordonnerObjet" << endl;
     double *i = NULL;
     double *j = NULL;
     int cmp = 1;
@@ -82,10 +83,10 @@ double* ordonerObjet(double* p, double* w)
     }
     double* result = (double *) malloc(cmp * sizeof(double));
     int k;
-    for(k = 0, i = p, j = w; k < cmp , *i != '\0', *j != '\0'; k++, i++, j++){
+    for(k = 0, i = p, j = w; k < cmp-1 , *i != '\0', *j != '\0'; k++, i++, j++){
         result[k] = (*i) / (*j);
     }
-    result[cmp] = '\0';
+    result[cmp-1] = '\0';
 
     double* point_p1 = NULL;
     double* point_w1 = NULL;

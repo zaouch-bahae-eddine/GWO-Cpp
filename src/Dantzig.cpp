@@ -3,7 +3,7 @@
 #include "ArrayTools.h"
 using namespace std;
 
-double* DantzigAlgo(double* p, double* w, double knapsackTaille)
+double* DantzigAlgo(int *indiceSolution, double* p, double* w, double knapsackTaille)
 {
     //ordonner décroissant
     ordonerObjet(p, w);
@@ -32,5 +32,6 @@ double* DantzigAlgo(double* p, double* w, double knapsackTaille)
         j++;
     }
     cout << "\nindice s = " << j - 1 << endl;
+    *indiceSolution = j - 1;
     return _x;
 }
